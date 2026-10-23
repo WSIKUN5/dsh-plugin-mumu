@@ -140,6 +140,14 @@ Helpers used during validation: `test/jitter.ps1` (fake user mouse movement), `t
 (asserts the tap is refused), `test/occluder-win32.ps1` (covers the window to verify PrintWindow).
 The README demo GIF is produced by `test/demo-capture.mjs` (frames) and `test/build-demo-gif.py` (GIF).
 
+## Changelog
+
+**v0.2.2 (2026-10-24)** — Real-play lessons fed back into the skill:
+
+- `skill/references/doudizhu.md`: new **section 8 "second night, real play"** — multiplier discipline (never double once the stake is already ≥8×; every bomb doubles it again), card counting (deck − my hand − played = theirs), the game's smart-select **upgrading a chosen combo** (triple+pair → airplane), the two causes of "invalid combination" and how to retry, telling the current trick from the previous one, the end-of-set "好友同玩战绩" flow, and **measured coordinates for the social UI** (chat panel, 10 quick phrases, 5 free emotes, like button).
+- `skill/SKILL.md`: three new hard rules (re-detect coordinates after reopening the window, smart-select may upgrade the combo, retry once on "invalid combination") plus a reference-table entry for the social UI.
+- Context: 6 games, 1 win, −320 total — the post-mortem pointed at multiplier management and late card counting, now written down as a pre-game checklist.
+
 ## Known limitations
 
 - **MuMu-specific**: relies on MuMu's render-window structure and `MuMuManager`; other emulators are untested.

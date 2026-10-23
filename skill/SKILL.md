@@ -13,6 +13,7 @@ description: 操作 MuMu 模拟器里的任意安卓 App（看屏幕 / 点 / 滑
 
 - 不要用 Windows 屏幕坐标，也不要用安卓的 1440×2560——那两者都不是截图上的坐标。
 - 窗口会动、句柄会变：`mumu_info` 的 `renderRect` 是新取的；动作报"窗口失效"就用 `mumu_info({refresh:true})`。
+- **窗口关掉重开 / MuMu 重启 / worker 重启之后，所有按键坐标必须重新检测**：渲染窗尺寸可能变、游戏 UI 也会重排。别沿用上一场的坐标（Ruic 明确提醒过）。
 - 需要精确位置时先截图量，别猜：`mumu_observe({region:{...}, maxWidth:900})` 放大局部看。
 
 ## 标准循环
@@ -49,6 +50,8 @@ mumu_ocr({ region: {x0: 0, y0: 0, x1: 1763, y1: 200}, scale: 2 })
 - **点击会抢前台**（会把 MuMu 提到最前）。使用者正在用电脑时，先说明再动作；连续自动操作完把前台还回去。
 - **慢就是错**：叫地主/加倍/倒计时只有 2~3 秒，别"截图→思考→点"。这类环节用 `mumu_wait` 的本地轮询 + `tap`，一次工具调用内完成。
 - **布局会变**：手牌选中会上浮、数量变化会重新居中。一次点 1~2 张就重新 `mumu_scan`/`observe`，别一把盲点八张。
+- **⚠️ 有些游戏（如斗地主）会「智能选牌/自动出牌」**：点一张牌它可能自动帮你补齐整套、甚至直接替你打出去。**点一下就 observe 确认哪些牌抬高（=选中），绝不重复点同一张**（重复点＝取消，随后按「出牌」会报"牌型不符合规则"）。选多张时**从右往左点**，因为抬起的牌点击热区会往右扩。
+- **⚠️ 智能选牌还会把你的选择"升级"成更大的牌型**（实测：选 QQQ+77 三带二，游戏自动补成 飞机 QQQJJJ+77，一口气出了 8 张）。所以按「出牌」前**数一遍抬起的牌数**；若报「您选择的牌型不符合规则」，先核对抬起的牌，必要时**取消重选一次再按**（偶发是选择状态没提交，不是真选错）。详见 `references/doudizhu.md` 第 7、8 节。
 - **中文输入不支持**：`mumu_text` 只吃 ASCII。需要中文时用 `mumu_shell` 走剪贴板（`cmd clipboard set-text` 之类，按客机情况）或 App 内输入。
 - **截图不要走 adb**：游戏在独立虚拟显示器上，`adb screencap` 只能截到桌面。只用 `mumu_observe`。
 - **MuMu 每个 App 一个虚拟显示器**：这台上游戏在 display 3、系统设置在 display 5、桌面在 display 0；render 窗口显示"当前 App"那个显示器。启动/切换第三方 App 后先 `mumu_observe` 确认窗口真的切过去了；斗地主这类游戏运行时，它的 SDK 政策活动可能把窗口抢回游戏（此时画面还是游戏而不是你刚启动的 App）。
@@ -75,4 +78,5 @@ mumu_ocr({ region: {x0: 0, y0: 0, x1: 1763, y1: 200}, scale: 2 })
 | 场景 | 读 |
 | --- | --- |
 | 斗地主：叫地主/加倍/读手牌/出牌 | [references/doudizhu.md](references/doudizhu.md) |
+| 斗地主：倍数纪律、记牌、互动（快捷语/表情/点赞） | [references/doudizhu.md](references/doudizhu.md) 第 8 节 |
 | 报错、点不中、窗口失效、多开 | [references/troubleshooting.md](references/troubleshooting.md) |
