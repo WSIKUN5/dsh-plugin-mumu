@@ -2,6 +2,8 @@
 
 [English](README.en.md) | 简体中文
 
+> 📦 最新版本下载：[Releases](https://github.com/WSIKUN5/dsh-plugin-mumu/releases/latest)（zip 解压即用，不用 clone）
+
 把 Windows 上的 **MuMu 模拟器** 变成 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 里的一组 `mumu_*` 工具 + 一个 `mumu-skill`。
 
 模型可以像用 `browser-skill` 那样直接操作模拟器：**看屏幕、点击、滑动、按键、输文本、跑 Android shell、等画面变化、OCR 读字、装/卸 App、多开寻址**，从而操作模拟器里的任意 App（内置一份斗地主场景的坐标与判定参考）。
@@ -56,7 +58,7 @@ MuMu Player 15 把每个 App 放在独立的虚拟显示器上（实测这台：
 
 ## 安装
 
-1. 克隆或下载本仓库到任意目录，例如 `D:\dsh-plugin-mumu`；
+1. 克隆本仓库，或从 [Releases](https://github.com/WSIKUN5/dsh-plugin-mumu/releases/latest) 下载 zip 解压，例如放到 `D:\dsh-plugin-mumu`；
 2. 按需修改 `cordis.patch.yml` 里的路径（见下一节）；
 3. 在 DeepSeek Harness 里安装 bundle：
 

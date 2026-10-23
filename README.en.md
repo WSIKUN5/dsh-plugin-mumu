@@ -2,6 +2,8 @@
 
 English | [简体中文](README.md)
 
+> 📦 Latest release: [download the zip](https://github.com/WSIKUN5/dsh-plugin-mumu/releases/latest) — unzip and install, no clone needed.
+
 Turn **MuMu Player** (Windows Android emulator) into a set of `mumu_*` tools plus a `mumu-skill` playbook for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness).
 
 The model can drive the emulator the same way `browser-skill` drives a browser: **observe the screen, tap, swipe, press keys, type text, run Android shell commands, wait for on-screen changes, OCR text, install/uninstall apps, and address multiple emulator instances** — so it can operate any app inside the emulator. A battle-tested Doudizhu (Chinese card game) reference is included as an example.
@@ -51,7 +53,7 @@ The Win32 P/Invoke and pixel work live in `lib/mumu-worker.ps1` (a long-lived Po
 
 ## Install
 
-1. Clone or download this repository, e.g. to `D:\dsh-plugin-mumu`;
+1. Clone this repository, or download and unzip the [latest release](https://github.com/WSIKUN5/dsh-plugin-mumu/releases/latest), e.g. to `D:\dsh-plugin-mumu`;
 2. Adjust paths in `cordis.patch.yml` if needed (see below);
 3. In DeepSeek Harness:
 
