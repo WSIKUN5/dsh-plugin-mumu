@@ -1,5 +1,7 @@
 # dsh-plugin-mumu
 
+[English](README.en.md) | 简体中文
+
 把 Windows 上的 **MuMu 模拟器** 变成 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 里的一组 `mumu_*` 工具 + 一个 `mumu-skill`。
 
 模型可以像用 `browser-skill` 那样直接操作模拟器：**看屏幕、点击、滑动、按键、输文本、跑 Android shell、等画面变化、OCR 读字、装/卸 App、多开寻址**，从而操作模拟器里的任意 App（内置一份斗地主场景的坐标与判定参考）。
@@ -8,6 +10,11 @@
 - 点击走 `SendInput` 绝对坐标 + 光标到位校验：MuMu 通过轮询系统鼠标位置决定触摸点，光标没站稳就**拒绝点击**，避免点错
 - 限时操作（2~3 秒的按钮）用 `mumu_wait` 本地轮询，不占用大模型回合
 - OCR 用 Windows 自带的 `Windows.Media.Ocr`，**完全本地离线**
+
+![演示](docs/demo.gif)
+
+演示片段：截图 → 启动系统设置 → 按渲染窗像素点击 → 返回 → 回到游戏。全程由 `mumu_*` 工具驱动，
+帧是直接截的 MuMu 渲染窗，坐标就是渲染窗像素。
 
 ## 工具一览
 
@@ -120,6 +127,7 @@ skill/SKILL.md          玩法层文档（工作流/硬约束）
 skill/references/       斗地主坐标与判定、排障手册
 locale/ icon.svg        插件管理器显示用的标题/描述/图标
 test/                   独立测试脚本（不需要 DSH 也能跑）
+docs/demo.gif           演示动画
 ```
 
 ## 测试 / 开发
@@ -135,6 +143,7 @@ node test/calibrate.mjs 700 400     # 触点标定：点一下并立刻截图（
 
 验收时用到的辅助脚本：`test/jitter.ps1`（模拟人手动鼠标）、`test/jitter-tap.mjs`（验证拒绝点击）、
 `test/occluder-win32.ps1`（盖一个置顶窗口验证遮挡截图）。
+README 的演示 GIF 由 `test/demo-capture.mjs` 抓帧、`test/build-demo-gif.py` 合成。
 
 ## 已知限制
 
