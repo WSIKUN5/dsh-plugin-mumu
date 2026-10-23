@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "MuMu Emulator Control",
+    "description": "mumu_* tools to observe, tap, swipe, send keys, run Android shell commands, wait for on-screen changes, OCR text, install/uninstall apps, and address multiple MuMu instances, plus the mumu-skill playbook."
+  }
+}

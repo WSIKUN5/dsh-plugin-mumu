@@ -1,0 +1,6 @@
+{
+  "meta": {
+    "title": "MuMu 模拟器控制",
+    "description": "用 mumu_* 工具看屏幕、点击、滑动、按键、跑 Android shell、等画面变化、OCR 读字、装/卸 App，从而操作 MuMu 模拟器里的任意 App（支持多开寻址）；附带 mumu-skill 玩法层文档。"
+  }
+}

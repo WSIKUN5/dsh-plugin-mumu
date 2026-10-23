@@ -1,0 +1,12 @@
+# dsh-plugin-mumu 的 Loader 补丁：把 mumu 插件行插进 profile。
+# 参数都可以改；managerPath 指向 MuMu 安装目录里的 MuMuManager.exe。
+- insert:
+    - id: mumu
+      name: dsh-plugin-mumu
+      config:
+        managerPath: 'D:\MuMuPlayer\nx_main\MuMuManager.exe'
+        adbPath: 'D:\MuMuPlayer\nx_main\adb.exe'
+        instance: 0
+        captureDir: 'D:\MuMuCaptures'
+        respectUserMouse: true
+        workerIdleTimeoutMs: 600000

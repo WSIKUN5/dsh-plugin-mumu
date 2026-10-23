@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" role="img" aria-label="MuMu emulator control">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5b7cfa"/>
+      <stop offset="1" stop-color="#18b6a4"/>
+    </linearGradient>
+    <linearGradient id="screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f1a33"/>
+      <stop offset="1" stop-color="#1d2f57"/>
+    </linearGradient>
+  </defs>
+  <rect x="4" y="4" width="120" height="120" rx="28" fill="url(#bg)"/>
+  <rect x="34" y="22" width="60" height="84" rx="12" fill="url(#screen)" stroke="#dfe9ff" stroke-width="4"/>
+  <circle cx="64" cy="90" r="5" fill="#dfe9ff" opacity="0.75"/>
+  <path d="M50 38 L64 60 L78 38" fill="none" stroke="#7ef0d8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="64" cy="70" r="9" fill="none" stroke="#ffd166" stroke-width="5"/>
+  <path d="M94 96 l10 10 M104 96 l-10 10" stroke="#ffd166" stroke-width="5" stroke-linecap="round"/>
+</svg>
