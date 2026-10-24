@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: checks (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node checks (syntax / manifest / skill / winrt assets)
+        run: node test/ci-checks.mjs
+
+      - name: PowerShell syntax checks
+        run: pwsh -NoProfile -File scripts/check-powershell.ps1

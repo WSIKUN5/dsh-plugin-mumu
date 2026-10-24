@@ -141,7 +141,30 @@ Helpers used during validation: `test/jitter.ps1` (fake user mouse movement), `t
 (asserts the tap is refused), `test/occluder-win32.ps1` (covers the window to verify PrintWindow).
 The README demo GIF is produced by `test/demo-capture.mjs` (frames) and `test/build-demo-gif.py` (GIF).
 
+### CI and releases
+
+- **CI**: GitHub Actions (`.github/workflows/ci.yml`) runs on push / PR and needs no MuMu or DSH:
+  - `node test/ci-checks.mjs` — JS syntax, package.json/locale, skill frontmatter, OCR assemblies;
+  - `scripts/check-powershell.ps1` — parses every `.ps1` and forbids falling back to Windows PowerShell 5.1.
+- **Releasing**: `scripts/release.ps1` does checks → tag → push → GitHub Release with the plugin zip:
+
+```powershell
+# bump package.json version and commit first
+pwsh -NoProfile -File scripts/release.ps1 -DryRun   # checks + build dist/ zip only (no remote changes)
+pwsh -NoProfile -File scripts/release.ps1           # real release (needs git/gh on PATH, gh logged in)
+```
+
 ## Changelog
+
+**v0.2.4 (2026-10-24)** — engineering:
+
+- GitHub Actions CI (`.github/workflows/ci.yml`): on push / PR it checks JS syntax, manifest, skill frontmatter, OCR assemblies, and parses all PowerShell scripts (and forbids falling back to Windows PowerShell 5.1).
+- `scripts/release.ps1`: checks → tag → push → GitHub Release with the plugin zip; supports `-DryRun`.
+
+**v0.2.3 (2026-10-24)** — DeepSeek Harness `0.2.1-rc.3` compatibility:
+
+- Regression-tested all 11 tools and `mumu-skill` on rc.3 (inline screenshots, OCR, wait, shell, plugin reload); **no plugin code changes were required**.
+- `doudizhu.md`: new "window size is not fixed" section — how to scale old coordinates after the MuMu window is maximized/moved/restarted.
 
 **v0.2.2 (2026-10-24)** — Real-play lessons fed back into the skill:
 

@@ -148,7 +148,30 @@ node test/calibrate.mjs 700 400     # 触点标定：点一下并立刻截图（
 `test/occluder-win32.ps1`（盖一个置顶窗口验证遮挡截图）。
 README 的演示 GIF 由 `test/demo-capture.mjs` 抓帧、`test/build-demo-gif.py` 合成。
 
+### CI 与发版
+
+- **CI**：GitHub Actions（`.github/workflows/ci.yml`）在 push / PR 时跑，不需要 MuMu 或 DSH：
+  - `node test/ci-checks.mjs` —— JS 语法、package.json/locale、skill frontmatter、OCR 程序集是否齐全；
+  - `scripts/check-powershell.ps1` —— 所有 `.ps1` 的语法解析 + 禁止回退 Windows PowerShell 5.1。
+- **发版**：`scripts/release.ps1` 一条命令完成 预检 → 打 tag → 推送 → 建 GitHub Release（附插件 zip）：
+
+```powershell
+# 先把 package.json 的 version 改好并提交
+pwsh -NoProfile -File scripts/release.ps1 -DryRun   # 只预检 + 构建 dist/ 里的 zip（不动远端）
+pwsh -NoProfile -File scripts/release.ps1           # 正式发版（需要 git/gh 在 PATH、gh 已登录）
+```
+
 ## 更新记录
+
+**v0.2.4（2026-10-24）** — 工程化：
+
+- 新增 GitHub Actions CI（`.github/workflows/ci.yml`）：push / PR 自动跑 JS 语法、清单、skill frontmatter、OCR 程序集检查，以及全部 PowerShell 脚本的语法检查（并禁止回退到 Windows PowerShell 5.1）；
+- 新增 `scripts/release.ps1`：预检 → 打 tag → 推送 → 建 GitHub Release（附插件 zip），支持 `-DryRun`。
+
+**v0.2.3（2026-10-24）** — 适配 DSH `0.2.1-rc.3`：
+
+- 在 rc.3 上回归验证 11 个工具 + `mumu-skill`（截图内联 / OCR / wait / shell / 插件热重载），**插件代码无需改动**；
+- `doudizhu.md` 新增「窗口尺寸不是固定的」：MuMu 窗口最大化/拖动/重启后旧坐标如何按比例缩放。
 
 **v0.2.2（2026-10-24）** — 斗地主实战经验回灌到 skill：
 
