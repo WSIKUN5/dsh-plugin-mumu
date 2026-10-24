@@ -54,6 +54,7 @@ MuMu Player 15 把每个 App 放在独立的虚拟显示器上（实测这台：
 - Windows 10 / 11
 - [MuMu Player 12/15](https://mumu.163.com/)（默认安装在 `D:\MuMuPlayer`，可在配置里改）
 - DeepSeek Harness 桌面版（0.2.x），带 PowerShell 7
+- 已在 **DeepSeek Harness `0.2.1-rc.3`**（2026-10-24）上回归验证：11 个工具 + `mumu-skill` 全部正常（截图内联、OCR、wait、shell、插件重载都测过）
 - 不需要 Node 额外依赖：插件只 import Node 内置模块
 
 ## 安装

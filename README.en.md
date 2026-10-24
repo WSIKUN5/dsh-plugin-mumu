@@ -49,6 +49,7 @@ The Win32 P/Invoke and pixel work live in `lib/mumu-worker.ps1` (a long-lived Po
 - Windows 10 / 11
 - [MuMu Player](https://mumu.163.com/) (default `D:\MuMuPlayer`, configurable)
 - DeepSeek Harness desktop 0.2.x with PowerShell 7
+- Regression-tested on **DeepSeek Harness `0.2.1-rc.3`** (2026-10-24): all 11 tools and `mumu-skill` work (inline screenshots, OCR, wait, shell, and plugin reload)
 - No extra Node dependencies — the plugin only imports Node built-ins
 
 ## Install
